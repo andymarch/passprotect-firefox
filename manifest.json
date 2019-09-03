@@ -1,0 +1,33 @@
+{
+  "manifest_version": 2,
+  "name": "PassProtect",
+  "version": "0.1",
+
+  "description": "A simple Firefox extension to help you stop using bad passwords.",
+  "homepage_url": "https://www.passprotect.io",
+  "icons": {
+    "16": "icons/icon-16.png",
+    "32": "icons/icon-32.png",
+    "48": "icons/icon-48.png",
+    "128": "icons/icon-128.png"
+  },
+
+  "permissions": [
+    "https://api.pwnedpasswords.com/*/",
+    "activeTab",
+    "webRequest",
+    "notifications"
+  ],
+
+  "browser_action": {
+    "default_icon": "icons/icon-32.png",
+    "default_title": "PassProtect"
+  },
+
+  "content_scripts": [
+    {
+      "matches": ["*://*/*"],
+      "js": ["passprotect.js","vendor/sha1.min.js"]
+    }
+  ]
+}
