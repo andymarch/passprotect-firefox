@@ -27,7 +27,8 @@
   "content_scripts": [
     {
       "matches": ["*://*/*"],
-      "js": ["passprotect.js","vendor/sha1.min.js"]
+      "js": ["vendor/sha1.min.js","vendor/vex.combined.min.js","passprotect.js"],
+      "css": ["vendor/vex.css", "vendor/vex-theme-wireframe.css"]
     }
   ]
 }

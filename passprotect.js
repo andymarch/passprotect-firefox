@@ -24,6 +24,11 @@
         }
     }
 
+    vex.defaultOptions.className = "vex-theme-wireframe";
+    vex.defaultOptions.escapeButtonCloses = false;
+    vex.defaultOptions.overlayClosesOnClick = false;
+    vex.dialog.buttons.YES.text = "I Understand";
+
     /**
      * Globals
      */
@@ -40,14 +45,11 @@
     
         for (var i = 0; i < inputs.length; i++) {
             switch (inputs[i].type) {
-            case "email":
-                break;
             case "password":
                 inputs[i].addEventListener("change", protectPasswordInput);
                 break;
             }
         }
-        window.protected = true;
     }
 
     function protectPasswordInput(evt){
@@ -74,7 +76,11 @@
                             '<p>If you are currently using this password, please change it immediately to protect yourself. For more information, visit <a href="https://haveibeenpwned.com/" title="haveibeenpwned">Have I Been Pwned?</a>',
                             '<p>This notice will not show again for the duration of this session to give you time to update this password.</p>'
                         ].join('');
-                        alert(message)
+                        
+                        vex.dialog.alert({
+                            message: "Breach detected!",
+                            input: message
+                        });
                     }
                 }
             }
