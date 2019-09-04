@@ -1,0 +1,12 @@
+.vex-dialog-message {
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .vex-dialog-input p {
+    margin-bottom: 1em;
+  }
+
+  .vex-dialog-input b {
+    font-weight: bold !important;
+  }

@@ -1,9 +1,9 @@
 {
   "manifest_version": 2,
-  "name": "PassProtect",
+  "name": "__MSG_extensionName__",
   "version": "0.1",
 
-  "description": "A simple Firefox extension to help you stop using bad passwords.",
+  "description": "__MSG_extensionDescription__",
   "homepage_url": "https://www.passprotect.io",
   "icons": {
     "16": "icons/icon-16.png",
@@ -21,14 +21,16 @@
 
   "browser_action": {
     "default_icon": "icons/icon-32.png",
-    "default_title": "PassProtect"
+    "default_title": "__MSG_extensionName__"
   },
 
   "content_scripts": [
     {
-      "matches": ["*://*/*"],
+      "matches": ["<all_urls>"],
       "js": ["vendor/sha1.min.js","vendor/vex.combined.min.js","passprotect.js"],
-      "css": ["vendor/vex.css", "vendor/vex-theme-wireframe.css"]
+      "css": ["style.css","vendor/vex.css", "vendor/vex-theme-wireframe.css"]
     }
-  ]
+  ],
+
+  "default_locale": "en"
 }

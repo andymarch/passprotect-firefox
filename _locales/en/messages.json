@@ -1,0 +1,48 @@
+{
+    "extensionName": {
+      "message": "PassProtect",
+      "description": "Name of the extension."
+    },
+  
+    "extensionDescription": {
+      "message": "A simple Firefox extension to help you stop using bad passwords.",
+      "description": "Description of the extension."
+    },
+
+    "confirmWarning":{
+        "message": "I Understand",
+        "description": "Confirm and dismiss the warning dialog."
+    },
+
+    "warningTitle": {
+        "message": "Breach detected!",
+        "description": "Title of the click notification."
+    },
+    
+    "breachCount": {
+        "message": "<p>The password you just entered has been found in <b> $1 </b> data breaches. <b>This password is not safe to use</b>.</p>",
+        "description": "Tells the number of breaches.",
+        "placeholders": {
+            "url" : {
+            "content" : "$1",
+            "example" : ""
+            }
+        }
+    },
+
+    "breachExplainer": {
+        "message": "<p>This means attackers can easily find this password online and will often try to access accounts with it.</p>",
+        "description": "Explain the result of appearing in a breach."
+    },
+
+    "callToAction": {
+        "message": "<p>If you are currently using this password, please change it immediately to protect yourself. For more information, visit <a href=\"https://haveibeenpwned.com/\" title=\"haveibeenpwned\">Have I Been Pwned?</a>",
+        "description": "Action required from the user after being shown the warning."
+    },
+
+    "sessionSuppressNotice": {
+        "message": "<p>This notice will not show again for the duration of this session to give you time to update this password.</p>",
+        "description": "Remind the user they will not be shown this notice for the duration of their session."
+    }
+
+}

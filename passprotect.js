@@ -27,7 +27,7 @@
     vex.defaultOptions.className = "vex-theme-wireframe";
     vex.defaultOptions.escapeButtonCloses = false;
     vex.defaultOptions.overlayClosesOnClick = false;
-    vex.dialog.buttons.YES.text = "I Understand";
+    vex.dialog.buttons.YES.text = browser.i18n.getMessage("confirmWarning");
 
     /**
      * Globals
@@ -76,15 +76,15 @@
                     var data = resp[i].split(":");
         
                     if (data[0].indexOf(shortHash) === 0) {
-                        var message = [
-                            '<p>The password you just entered has been found in <b>' + numberFormatter(parseInt(data[1]))  + '</b> data breaches. <b>This password is not safe to use</b>.</p>',
-                            '<p>This means attackers can easily find this password online and will often try to access accounts with it.</p>',
-                            '<p>If you are currently using this password, please change it immediately to protect yourself. For more information, visit <a href="https://haveibeenpwned.com/" title="haveibeenpwned">Have I Been Pwned?</a>',
-                            '<p>This notice will not show again for the duration of this session to give you time to update this password.</p>'
+                        var message =[
+                            browser.i18n.getMessage("breachCount",numberFormatter(parseInt(data[1]))),
+                            browser.i18n.getMessage("breachExplainer"),
+                            browser.i18n.getMessage("callToAction"),
+                            browser.i18n.getMessage("sessionSuppressNotice")
                         ].join('');
                         
                         vex.dialog.alert({
-                            message: "Breach detected!",
+                            message: browser.i18n.getMessage("warningTitle"),
                             input: message,
                             callback: function() {
                             // Cache this email once the user clicks the "I Understand" button
