@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "start:firefox": "web-ext run --source-dir ./",
+        "build:firefox": "web-ext build --source-dir ./ --overwrite-dest"
+    }
+}

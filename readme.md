@@ -33,11 +33,16 @@ necessary, we can all help make the web a safer place &lt;3
 
 ## How to Use PassProtect
 
-At the moment you will need to load this as a temporary extension to Firefox,
-following [this](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Temporary_Installation_in_Firefox)
-process.
+If you are running the developer build of Firefox you will be able to install
+any of the releases from file once you set ```xpi.install.signatures.required```
+to ```false```.
 
-Working on getting this onto addons.mozilla.org.
+If you are running the main release of Firefox you will need to unzip the
+release and load this as a temporary extension to Firefox
+following [this](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Temporary_Installation_in_Firefox)
+process
+
+Working on getting this onto addons.mozilla.org so the above is not necessary.
 
 ## Is PassProtect Secure?
 
