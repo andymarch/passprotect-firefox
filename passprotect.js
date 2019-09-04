@@ -54,6 +54,12 @@
 
     function protectPasswordInput(evt){
         var inputValue = evt.currentTarget.value;
+
+        // If this email is cached, we shouldn't do anything.
+        if (isIgnored(getEmailHash(inputValue))) {
+            return;
+        }
+
         var hash = sha1(inputValue).toUpperCase();
         var hashPrefix = hash.slice(0, 5);
         var shortHash = hash.slice(5);
@@ -79,14 +85,52 @@
                         
                         vex.dialog.alert({
                             message: "Breach detected!",
-                            input: message
+                            input: message,
+                            callback: function() {
+                            // Cache this email once the user clicks the "I Understand" button
+                            // so we don't continuously annoy the user with the
+                            // same warnings.
+                            localStorage.setItem(getEmailHash(inputValue), "true");
+                            }
                         });
                     }
                 }
             }
-          };
+        };
         xmlHttp.send(null);
     }
+
+    /**
+     * Return a unique email hash suitable for caching.
+     *
+     * @param {string} email - The email address to hash.
+     */
+    function getEmailHash(email) {
+        return sha1(email + "-" + getHost());
+    }
+    
+    
+    /**
+     * Return the top level host name for a domain. EG: Given woot.adobe.com, will
+     * return adobe.com.
+     */
+    function getHost() {
+        return window.location.host.split('.').slice(-2).join('.');
+    }
+
+    /**
+     * This function returns true if the data is ignored and should not be used to
+     * fire off a notification, false otherwise.
+     *
+     * @param {string} sensitiveData - The sensitive data to check for in
+     *      localStorage / sessionStorage.
+     */
+    function isIgnored(sensitiveData) {
+        var data = sessionStorage.getItem(sensitiveData) || localStorage.getItem(sensitiveData);
+    
+        return data === "true" ? true : false;
+    }
+    
 
     /**
      * Format numbers in a nice, human-readable fashion =)
