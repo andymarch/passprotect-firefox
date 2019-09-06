@@ -71,5 +71,8 @@ friendly!
 
 ## Changelog
 
+**1.1**: September 6, 2019
+    - Addressed issue with dynamically injected input fields not being protected.
+
 **1.0**: September 4, 2019
     - Working port
