@@ -35,20 +35,50 @@
     var PASS_PROTECT_PASSWORD_CHECK_URI = "https://api.pwnedpasswords.com/range/";
     
     /**
-     * Add listener to search for input fields
-     * //TODO fails to pickup signin widget as inserted on load
+     * Add listener to search for input fields on page load
      */
-    window.addEventListener('load', protectInputs());
-
-    function protectInputs() {
+    window.addEventListener('load',function() {
         var inputs = document.getElementsByTagName("input");
-    
         for (var i = 0; i < inputs.length; i++) {
-            switch (inputs[i].type) {
-            case "password":
-                inputs[i].addEventListener("change", protectPasswordInput);
-                break;
+            protectInput(inputs[i])
+        }
+    })
+
+    /**
+     * Add a mutation observer to catch any input fields injected after page load
+     */
+    var mutationObserver = new MutationObserver(function(mutations) {
+        mutations.forEach(function(mutation) {
+            for (var i = 0; i < mutation.addedNodes.length; i++) {
+                parseMutationNode(mutation.addedNodes[i])
             }
+        });
+    });
+    mutationObserver.observe(document.documentElement, {
+        attributes: false,
+        characterData: false,
+        childList: true,
+        subtree: true,
+        attributeOldValue: false,
+        characterDataOldValue: false
+    });
+
+    function parseMutationNode(mutationNode){
+        if(mutationNode.tagName == "INPUT"){
+            protectInput(mutationNode)
+        }
+        if(mutationNode.childElementCount > 0){
+            for (var i = 0; i < mutationNode.children.length; i++) {
+                parseMutationNode(mutationNode.children[i])
+            }
+        }
+    }
+
+    function protectInput(input){
+        switch (input.type) {
+            case "password":
+                input.addEventListener("change", protectPasswordInput);
+                break;
         }
     }
 
